@@ -15,7 +15,7 @@ import Typography from "@mui/material/Typography";
 export default function CustomizedTimeline() {
   return (
     <Timeline position="alternate">
-      <TimelineItem position="alternate">
+      <TimelineItem position="left">
         <TimelineOppositeContent
           sx={{ m: "auto 0" }}
           variant="body2"

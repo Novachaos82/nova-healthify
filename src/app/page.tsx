@@ -4,8 +4,20 @@ import graphics1 from "@/assets/searchSvg1.svg";
 import graphics2 from "@/assets/searchSvg2.svg";
 import laptop from "@/assets/laptop.png";
 import plates from "@/assets/choose wisely.png";
-import CustomizedTimeline from "@/components/MuiComponent";
+import VerticalTimline from "@/components/VerticalTimline";
+import knowYourFood from "@/assets/knowYourFood.png";
+import LaptopFeatures from "@/assets/featuresLaptop.png";
+import flask from "@/assets/flask.svg";
+import cookie from "@/assets/Cookie.svg";
+import article from "@/assets/Article.svg";
+import { Turret_Road } from "next/font/google";
 
+import { GitHub } from "@mui/icons-material";
+import AccordionSection from "@/components/AccordionSection";
+const turret_road = Turret_Road({
+  subsets: ["latin"],
+  weight: ["500"],
+});
 export default function Home() {
   return (
     <main className="">
@@ -68,14 +80,64 @@ export default function Home() {
       </div>
 
       {/* how it works section */}
-      <div>
-        <h1 className="text-center text-[42px] mb-96 text-[#3C3633] font-semibold">
+      <div className="mb-32">
+        <h1 className="text-center text-[42px]  text-[#3C3633] font-semibold">
           How it works -<span className="text-[#E0CCBE]">1 easy steps</span>
         </h1>
+        <VerticalTimline />
       </div>
 
-      <div className="mt-[40px]">
-        <CustomizedTimeline />
+      {/* Know your food */}
+
+      <div
+        className={`flex flex-col max-w-[1200px] justify-between items-center mx-auto bg-[#FFF1E8] p-2 py-32 rounded-xl mb-10 ${turret_road.className}`}
+      >
+        {/* header section */}
+        <div className="flex justify-between w-full px-20">
+          <Image
+            src={knowYourFood}
+            alt="knowYourFood"
+            width={324}
+            height={278}
+          />
+          <div>
+            <h1 className=" text-[48px]">Know about your food!</h1>
+            <div className="text-right flex gap-4 flex-col">
+              <div className="flex items-center justify-end">
+                <Image src={flask} alt="flask" />
+                <span> Harmfull preservatives</span>
+              </div>
+              <div className="flex items-center justify-end">
+                <Image src={article} alt="flask" />
+                <span> Harmfull preservatives</span>
+              </div>
+              <div className="flex items-center justify-end">
+                <Image src={cookie} alt="flask" />
+                <span> Harmfull preservatives</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* laptop section */}
+        <div className="flex items-center justify-around w-full pt-20">
+          <span className="text-xl">Science-Backed Information</span>
+          <Image src={LaptopFeatures} alt="laptop" width={300} height={300} />
+          <span className="text-xl">User-Friendly Interface</span>
+        </div>
+
+        <span className="text-xl text-center pl-10 pt-32">
+          Machine Learning Integration
+        </span>
+      </div>
+
+      {/* accordion */}
+
+      <div className="hidden md:block max-w-[1200px] mx-auto mb-96 space-y-10 mt-56">
+        <h1 className="text-center text-[42px]  text-[#3C3633] font-semibold">
+          FAQ - Frequently Asked Questions
+        </h1>
+        <AccordionSection />
       </div>
     </main>
   );
