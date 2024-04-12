@@ -14,26 +14,43 @@ import { Turret_Road } from "next/font/google";
 
 import { GitHub } from "@mui/icons-material";
 import AccordionSection from "@/components/AccordionSection";
+import SearchComponent from "@/components/SearchComponent";
 const turret_road = Turret_Road({
   subsets: ["latin"],
   weight: ["500"],
 });
-export default function Home() {
+
+async function getData() {
+  const res = await fetch("http://localhost:3000/api/home");
+  if (!res.ok) {
+    throw new Error("Error fetching data");
+  }
+  return res.json();
+}
+export default async function Home() {
+  const data = await getData();
+  console.log(data);
   return (
     <main className="">
       {/* header */}
+      {/*{data?.data && (
+        <div className="flex flex-row max-w-[1200px] justify-between items-center mx-auto">
+          <div className="flex flex-row items-center gap-4">
+            <Image
+              src={data.data["Image Links"]}
+              alt="logo"
+              width={50}
+              height={50}
+            />
+            {data.data["Image Links"]}
+          </div>
+        </div>
+      )}*/}
       <div className="flex flex-row max-w-[1200px] justify-between items-center mt-20 mx-auto">
         {/* search bar */}
         <div className="relative ">
-          <div className="z-10 relative">
-            <input
-              type="text"
-              placeholder="Search"
-              className="bg-white rounded-full border-black border-[1px] outline-none p-4 "
-            />
-            <div className="bg-black w-[50px] h-[50px] rounded-full flex justify-center items-center absolute top-1 right-2 ">
-              <Search stroke="white" />
-            </div>
+          <div className="z-10 relative w-full">
+            <SearchComponent />
           </div>
 
           <Image
