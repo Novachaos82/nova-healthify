@@ -20,6 +20,7 @@ const config = {
     extend: {
       boxShadow: {
         "faq-shadow": "0px 0px 0px 2px rgba(116, 114, 100, 0.25)",
+        "footer-shadow": "0px 0px 72px 0px rgba(77, 75, 74, 0.25);",
       },
       colors: {
         border: "hsl(var(--border))",
@@ -74,6 +75,9 @@ const config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+      },
+      fontFamily: {
+        "turret-road": ["Turret Road", "sans-serif"],
       },
     },
   },

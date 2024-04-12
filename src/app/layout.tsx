@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Sora, Turret_Road } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 const sora = Sora({ subsets: ["latin"] });
@@ -20,6 +21,7 @@ export default function RootLayout({
       <body className={sora.className}>
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );
