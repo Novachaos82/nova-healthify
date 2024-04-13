@@ -20,32 +20,9 @@ const turret_road = Turret_Road({
   weight: ["500"],
 });
 
-async function getData() {
-  const res = await fetch("http://localhost:3000/api/home");
-  if (!res.ok) {
-    throw new Error("Error fetching data");
-  }
-  return res.json();
-}
 export default async function Home() {
-  const data = await getData();
-  console.log(data);
   return (
     <main className="">
-      {/* header */}
-      {/*{data?.data && (
-        <div className="flex flex-row max-w-[1200px] justify-between items-center mx-auto">
-          <div className="flex flex-row items-center gap-4">
-            <Image
-              src={data.data["Image Links"]}
-              alt="logo"
-              width={50}
-              height={50}
-            />
-            {data.data["Image Links"]}
-          </div>
-        </div>
-      )}*/}
       <div className="flex flex-row max-w-[1200px] justify-between items-center mt-20 mx-auto">
         {/* search bar */}
         <div className="relative ">
