@@ -1,3 +1,4 @@
+"use client";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { FC } from "react";
@@ -13,6 +14,34 @@ import JoinNewsletter from "@/components/contact/Newsletter";
 interface pageProps {}
 
 const page: FC<pageProps> = ({}) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+
+    //const response = await fetch("/api/contact", {
+    //  method: "post",
+    //  body: formData,
+    //});
+    try {
+      const response = await fetch("/api/contact", {
+        method: "post",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        console.log("falling over");
+        throw new Error(`response status: ${response.status}`);
+      }
+      const responseData = await response.json();
+      console.log(responseData["message"]);
+
+      alert("Message successfully sent");
+    } catch (err) {
+      console.error(err);
+      alert("Error, please try resubmitting the form");
+    }
+    console.log("form submitted");
+  };
   return (
     <div>
       {/* head */}
@@ -24,7 +53,10 @@ const page: FC<pageProps> = ({}) => {
       {/* form and contact section*/}
       <div className="flex  max-w-[1200px]  my-20 mx-auto justify-between">
         {/* left form sections */}
-        <div className="bg-[#3C3633] p-10 rounded-lg flex flex-col font-turret-road w-[60%] gap-4 shadow-[0px_4px_35px_0px_rgba(0,0,0,0.5)]">
+        <form
+          onSubmit={handleSubmit}
+          className="bg-[#3C3633] p-10 rounded-lg flex flex-col font-turret-road w-[60%] gap-4 shadow-[0px_4px_35px_0px_rgba(0,0,0,0.5)]"
+        >
           <input
             type="text"
             placeholder="Enter name"
@@ -45,13 +77,16 @@ const page: FC<pageProps> = ({}) => {
           />{" "}
           <textarea
             placeholder="Leave a message or your queries..."
-            name="name"
+            name="message"
             className="bg-[#747264] px-5 py-3 text-white font-bold rounded-[35px] outline-none "
           />
-          <button className="bg-[#E0CCBE] text-black font-bold rounded-lg px-4 py-2 max-w-fit flex gap-2 font-sans mt-2 ml-2">
+          <button
+            type="submit"
+            className="bg-[#E0CCBE] text-black font-bold rounded-lg px-4 py-2 max-w-fit flex gap-2 font-sans mt-2 ml-2"
+          >
             Submit <ArrowRight size={20} />
           </button>
-        </div>
+        </form>
         {/* right section */}
         <div className="space-y-8 w-[40%] max-w-sm h-fit ">
           <div className="w-full h-full bg-[#FAFAFA] flex flex-col rounded-xl p-4 gap-4">
