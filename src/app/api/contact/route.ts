@@ -4,9 +4,8 @@ const nodemailer = require("nodemailer");
 // Handles POST requests to /api
 
 export async function POST(request: NextRequest) {
-  const username = process.env.NEXT_PUBLIC_BURNER_USERNAME;
-  const password = process.env.NEXT_PUBLIC_BURNER_PASSWORD;
-  const myEmail = process.env.NEXT_PUBLIC_PERSONAL_EMAIL;
+  const myEmail = process.env.PERSONAL_EMAIL;
+  const password = process.env.EMAIL_PASSWORD;
 
   const formData = await request.formData();
   const name = formData.get("name");
@@ -15,29 +14,34 @@ export async function POST(request: NextRequest) {
   const message = formData.get("message");
 
   const transporter = nodemailer.createTransport({
-    host: "smtp-mail.outlook.com",
-    port: 587,
-    tls: {
-      ciphers: "SSLv3",
-      rejectUnauthorized: false,
-    },
-
+    service: "gmail",
     auth: {
-      user: username,
+      user: myEmail,
       pass: password,
     },
   });
 
   try {
+    await transporter.verify();
+    console.log("Connected to email server");
+  } catch (err) {
+    console.log(err);
+    return NextResponse.json(
+      { message: "COULD NOT SEND MESSAGE" },
+      { status: 500 }
+    );
+  }
+
+  try {
     const mail = await transporter.sendMail({
-      from: username,
-      to: myEmail,
-      replyTo: email,
-      subject: `Website activity from ${email}`,
+      from: myEmail,
+      to: email,
+      //  replyTo: email,
+      subject: `Nova-Healthify Contact Form Submission`,
       html: `
         <p>Name: ${name} </p>
         <p>Email: ${email} </p>
-        <p>Email: ${phone} </p>
+        <p>phone: ${phone} </p>
 
         <p>Message: ${message} </p>
         `,
