@@ -1,13 +1,13 @@
 "use client";
 
-import { experiencesData } from "@/lib/data";
+import { timeLineData } from "@/lib/data";
 import React, { FC } from "react";
 import {
   VerticalTimeline,
   VerticalTimelineElement,
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
-import laptop from "@/assets/image1.png";
+
 import Image from "next/image";
 interface VerticalTimlineProps {}
 
@@ -17,7 +17,7 @@ const VerticalTimline: FC<VerticalTimlineProps> = ({}) => {
       <VerticalTimeline lineColor="black" animate={false} className="relative">
         <div className="hidden xl:block size-4 rounded-full bg-black absolute -top-2 right-[577px]"></div>
         <div className="hidden xl:block size-4 rounded-full bg-black absolute -bottom-2 right-[577px]"></div>
-        {experiencesData.map((item, index) => (
+        {timeLineData.map((item, index) => (
           <React.Fragment key={index}>
             <VerticalTimelineElement
               contentStyle={{

@@ -1,4 +1,3 @@
-import { Search } from "lucide-react";
 import Image from "next/image";
 import graphics1 from "@/assets/searchSvg1.svg";
 import graphics2 from "@/assets/searchSvg2.svg";
@@ -12,7 +11,6 @@ import cookie from "@/assets/Cookie.svg";
 import article from "@/assets/Article.svg";
 import { Turret_Road } from "next/font/google";
 
-import { GitHub } from "@mui/icons-material";
 import AccordionSection from "@/components/AccordionSection";
 import SearchComponent from "@/components/SearchComponent";
 const turret_road = Turret_Road({
