@@ -1,6 +1,6 @@
 "use client";
 
-import { timeLineData } from "@/lib/data";
+import { timeLineData } from "@/lib/veritcalDescriptionData";
 import React, { FC } from "react";
 import {
   VerticalTimeline,

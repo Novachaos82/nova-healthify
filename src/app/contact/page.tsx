@@ -1,7 +1,7 @@
 "use client";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, LoaderCircleIcon, LoaderIcon } from "lucide-react";
 import Image from "next/image";
-import { FC } from "react";
+import { FC, useState } from "react";
 
 import admin from "@/assets/contact/admin.png";
 import eyebrow from "@/assets/contact/EyebrowIcon.svg";
@@ -10,12 +10,15 @@ import mail from "@/assets/contact/mail.svg";
 import phone from "@/assets/contact/phone.png";
 import whatsapp from "@/assets/contact/wa.png";
 import JoinNewsletter from "@/components/contact/Newsletter";
+import { toast } from "sonner";
 
 interface pageProps {}
 
-const page: FC<pageProps> = ({}) => {
+const Page: FC<pageProps> = ({}) => {
+  const [loading, setLoading] = useState(false);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
     const formData = new FormData(e.currentTarget);
 
     //const response = await fetch("/api/contact", {
@@ -30,16 +33,19 @@ const page: FC<pageProps> = ({}) => {
 
       if (!response.ok) {
         console.log("falling over");
+        setLoading(false);
         throw new Error(`response status: ${response.status}`);
       }
       const responseData = await response.json();
       console.log(responseData["message"]);
-
-      alert("Message successfully sent");
+      setLoading(false);
+      toast.success("Email Sent Successfully");
     } catch (err) {
       console.error(err);
+      setLoading(false);
       alert("Error, please try resubmitting the form");
     }
+
     console.log("form submitted");
   };
   return (
@@ -62,31 +68,44 @@ const page: FC<pageProps> = ({}) => {
             placeholder="Enter name"
             name="name"
             className="bg-[#747264] px-5 py-3 text-white font-bold rounded-[35px] outline-none"
+            required
           />
           <input
             type="text"
             placeholder="Enter phone number"
             name="phone"
             className="bg-[#747264] px-5 py-3 text-white font-bold rounded-[35px] outline-none"
+            required
           />{" "}
           <input
             type="email"
             placeholder="Enter email "
             name="email"
             className="bg-[#747264] px-5 py-3 text-white font-bold rounded-[35px] outline-none"
-          />{" "}
+            required
+          />
           <textarea
             placeholder="Leave a message or your queries..."
             name="message"
             className="bg-[#747264] px-5 py-3 text-white font-bold rounded-[35px] outline-none "
+            required
           />
           <button
             type="submit"
             className="bg-[#E0CCBE] text-black font-bold rounded-lg px-4 py-2 max-w-fit flex gap-2 font-sans mt-2 ml-2"
           >
-            Submit <ArrowRight size={20} />
+            {!loading ? (
+              <>
+                Submit <ArrowRight size={20} />
+              </>
+            ) : (
+              <>
+                <LoaderCircleIcon size={20} className="animate-spin" />
+              </>
+            )}
           </button>
         </form>
+
         {/* right section */}
         <div className="space-y-8 w-[40%] max-w-sm h-fit ">
           <div className="w-full h-full bg-[#FAFAFA] flex flex-col rounded-xl p-4 gap-4">
@@ -142,4 +161,4 @@ const page: FC<pageProps> = ({}) => {
   );
 };
 
-export default page;
+export default Page;

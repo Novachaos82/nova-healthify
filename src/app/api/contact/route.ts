@@ -35,8 +35,8 @@ export async function POST(request: NextRequest) {
   try {
     const mail = await transporter.sendMail({
       from: myEmail,
-      to: email,
-      //  replyTo: email,
+      to: myEmail,
+      replyTo: email,
       subject: `Nova-Healthify Contact Form Submission`,
       html: `
         <p>Name: ${name} </p>

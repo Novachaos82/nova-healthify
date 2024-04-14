@@ -13,6 +13,7 @@ import { Turret_Road } from "next/font/google";
 
 import AccordionSection from "@/components/AccordionSection";
 import SearchComponent from "@/components/SearchComponent";
+import { faqData } from "@/lib/faqData";
 const turret_road = Turret_Road({
   subsets: ["latin"],
   weight: ["500"],
@@ -50,25 +51,24 @@ export default async function Home() {
       </div>
 
       {/* description section */}
-      <div className=" mx-auto flex items-center justify-between relative  overflow-hidden min-h-[894px] 2xl:px-[300px]">
-        <div className=" bg-[#747264] py-8 px-12 max-w-[600px] rounded-lg">
-          <h1 className="text-[#3C3633] text-[32px]">Description</h1>
-          <p className="text-[#E0CCBE] text-[18px]">
-            NovaHealthify features a user-friendly search bar that allows
-            individuals to effortlessly look up various food items. Through
-            seamless integration with the Open Food Facts API, the application
-            retrieves detailed information about the nutritional composition and
-            processing level of the queried products. The focus is particularly
-            on the NOVA classification, a system that categorizes foods based on
-            the extent and purpose of their processing.
-          </p>
+      <div className="relative">
+        <div className="max-w-[1200px] mx-auto flex items-center justify-between relative  overflow-hidden min-h-[894px] ">
+          <div className=" bg-[#747264] py-8 px-12 max-w-[600px] rounded-lg">
+            <h1 className="text-[#3C3633] text-[32px]">Description</h1>
+            <p className="text-[#E0CCBE] text-[18px]">
+              NovaHealthify features a user-friendly search bar that allows
+              individuals to effortlessly look up various food items. Through
+              seamless integration with the Open Food Facts API, the application
+              retrieves detailed information about the nutritional composition
+              and processing level of the queried products. The focus is
+              particularly on the NOVA classification, a system that categorizes
+              foods based on the extent and purpose of their processing.
+            </p>
+          </div>
         </div>
-
-        <Image
-          src={plates}
-          alt="plates"
-          className="absolute  -right-[24rem] "
-        />
+        <div className="absolute top-14  right-0 overflow-hidden ">
+          <Image src={plates} alt="plates" width={500} height={500} />
+        </div>
       </div>
 
       {/* how it works section */}
@@ -82,7 +82,7 @@ export default async function Home() {
       {/* Know your food */}
 
       <div
-        className={`flex flex-col max-w-[1200px] justify-between items-center mx-auto bg-[#FFF1E8] p-2 py-32 rounded-xl mb-10 ${turret_road.className}`}
+        className={`flex flex-col max-w-[1200px] justify-between items-center mx-auto bg-[#FFF1E8] p-2 py-32 rounded-xl ${turret_road.className}`}
       >
         {/* header section */}
         <div className="flex justify-between w-full px-20">
@@ -125,11 +125,18 @@ export default async function Home() {
 
       {/* accordion */}
 
-      <div className="hidden md:block max-w-[1200px] mx-auto mb-96 space-y-10 mt-56">
+      <div className="hidden md:block max-w-[1200px] mx-auto  my-10 space-y-10 mt-56">
         <h1 className="text-center text-[42px]  text-[#3C3633] font-semibold">
           FAQ - Frequently Asked Questions
         </h1>
-        <AccordionSection />
+        {faqData.map((faq, index) => (
+          <AccordionSection
+            key={index}
+            triggerText={faq.title}
+            descriptionPoints={faq.description}
+            value={index.toString()}
+          />
+        ))}
       </div>
     </main>
   );

@@ -52,29 +52,50 @@ const SearchResultPage = () => {
   };
 
   return (
-    <div className="flex flex-col text-white rounded-lg gap-4 justify-center">
-      <h1 className="text-2xl font-bold mb-4">Search Results</h1>
+    <div className=" flex flex-col text-black rounded-lg gap-4 justify-center max-w-[1200px] mx-auto">
+      <h1 className="text-[96px] text-[#3C3633] font-bold  ">Result</h1>
       {searchResults?.map((result, index) => (
-        <div
-          key={index}
-          className="bg-black text-white p-4 rounded-lg shadow-md"
-        >
-          <p className="font-bold mb-2">Brand Name: {result["BRAND NAME"]}</p>
-          <p className="mb-2">Product Name: {result["PRODUCT NAME"]}</p>
-          <p className="mb-2">Category: {result.CATEGORY}</p>
-          <p className="mb-2">Subcategory: {result.SUBCATEGORY}</p>
-          <p className="mb-2">Ingredients: {result.INGREDIENTS}</p>
-          <p className={`mb-2 ${getNovaGroupColor(result["NOVA Group"])}`}>
-            Nova Group: {result["NOVA Group"]}
-          </p>
-          <div className="flex justify-center">
-            <Image
-              src={result["Image Links"]}
-              alt="product"
-              width={150}
-              height={150}
-              className="rounded-lg"
-            />
+        <div key={index} className="space-y-4 my-10">
+          <h1 className="text-[24px] text-[#747264] font-semibold">
+            Results for &quot;
+            {result["PRODUCT NAME"]}
+            &quot;
+          </h1>
+          <div className="flex justify-between bg-white border-black border-[2px] text-black p-4 rounded-xl  mx-auto mb-10  w-full px-16 py-8 ">
+            <div className="flex flex-col justify-center text-[18px] w-[60%]">
+              <p className=" mb-2">
+                <span className="font-bold">Brand Name: </span>
+                {result["BRAND NAME"]}
+              </p>
+              <p className="mb-2">
+                <span className="font-bold">Product Name: </span>{" "}
+                {result["PRODUCT NAME"]}
+              </p>
+              <p className="mb-2">
+                <span className="font-bold">Category: </span> {result.CATEGORY}
+              </p>
+              <p className="mb-2">
+                <span className="font-bold">Subcategory: </span>{" "}
+                {result.SUBCATEGORY}
+              </p>
+              <p className="mb-2">
+                <span className="font-bold">Ingredients: </span>{" "}
+                {result.INGREDIENTS}
+              </p>
+              <p className={`mb-2 ${getNovaGroupColor(result["NOVA Group"])}`}>
+                <span className="font-bold">Nova Group: </span>
+                {result["NOVA Group"]}
+              </p>
+            </div>
+            <div className="flex justify-center ">
+              <Image
+                src={result["Image Links"]}
+                alt="product"
+                width={150}
+                height={150}
+                className="rounded-lg"
+              />
+            </div>
           </div>
         </div>
       ))}

@@ -62,7 +62,7 @@ const SearchComponent: FC<SearchComponentProps> = ({}) => {
         </ul>
       )}
       <div
-        className="bg-black w-[100px] h-[50px] rounded-full flex justify-center items-center absolute top-1 right-2 cursor-pointer"
+        className="bg-black w-[50px] h-[50px] rounded-full flex justify-center items-center absolute top-1 right-2 cursor-pointer"
         onClick={handleSearch}
       >
         <Search stroke="white" />
