@@ -8,6 +8,8 @@ interface SearchComponentProps {}
 const SearchComponent: FC<SearchComponentProps> = ({}) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [novaResult, setNovaResult] = useState("");
+  const [showSuggestions, setShowSuggestions] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
@@ -20,24 +22,43 @@ const SearchComponent: FC<SearchComponentProps> = ({}) => {
           },
           body: JSON.stringify({ searchTerm }),
         });
-
         if (response.ok) {
           const { suggestions: data } = await response.json();
           setSuggestions(data);
+          setShowSuggestions(true);
         } else {
           console.error("Error fetching suggestions");
         }
       } else {
         setSuggestions([]);
+        setShowSuggestions(false);
       }
     }, 300);
-
     return () => clearTimeout(delaySearch);
   }, [searchTerm]);
 
   const handleSearch = () => {
     router.push(`/search-result?productName=${searchTerm}`);
   };
+
+  async function predictNova() {
+    setShowSuggestions(false);
+    const result = await predictNovaHelper(searchTerm);
+    setNovaResult(result);
+  }
+
+  async function predictNovaHelper(ingredients: string) {
+    const response = await fetch("http://localhost:5000/predict", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ INGREDIENTS: ingredients }),
+    });
+    const data = await response.json();
+    console.log(data.result);
+    return data.result;
+  }
 
   return (
     <div className="relative">
@@ -48,7 +69,7 @@ const SearchComponent: FC<SearchComponentProps> = ({}) => {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-      {suggestions.length > 0 && (
+      {showSuggestions && suggestions.length > 0 && (
         <ul className="absolute bg-white shadow-md rounded-md w-full mt-2 z-10 max-h-[200px] overflow-y-scroll">
           {suggestions.map((suggestion, index) => (
             <li
@@ -67,6 +88,17 @@ const SearchComponent: FC<SearchComponentProps> = ({}) => {
       >
         <Search stroke="white" />
       </div>
+      <div
+        className="bg-green-500 w-[50px] h-[50px] rounded-full flex justify-center items-center absolute top-1 right-16 cursor-pointer"
+        onClick={predictNova}
+      >
+        <Search stroke="white" />
+      </div>
+      {novaResult && (
+        <div className=" flex w-full justify-center mt-8">
+          <p className="font-bold">{novaResult}</p>
+        </div>
+      )}
     </div>
   );
 };

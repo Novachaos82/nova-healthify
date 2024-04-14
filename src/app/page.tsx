@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import graphics1 from "@/assets/searchSvg1.svg";
 import graphics2 from "@/assets/searchSvg2.svg";
@@ -14,12 +15,13 @@ import { Turret_Road } from "next/font/google";
 import AccordionSection from "@/components/AccordionSection";
 import SearchComponent from "@/components/SearchComponent";
 import { faqData } from "@/lib/faqData";
+
 const turret_road = Turret_Road({
   subsets: ["latin"],
   weight: ["500"],
 });
 
-export default async function Home() {
+export default function Home() {
   return (
     <main className="">
       <div className="flex flex-row max-w-[1200px] justify-between items-center mt-20 mx-auto">
