@@ -120,7 +120,7 @@ const Page: FC<pageProps> = ({}) => {
               <div className="space-y-3">
                 <p className="flex gap-3">
                   <Image src={phone} alt="" className="object-contain" /> +91
-                  9433996985
+                  9131580352
                 </p>
                 <p className="flex gap-3">
                   <Image src={whatsapp} alt="" className="object-contain" />{" "}
@@ -142,11 +142,11 @@ const Page: FC<pageProps> = ({}) => {
               <div className="space-y-3">
                 <p className="flex gap-3">
                   <Image src={admin} alt="" className="object-contain" />
-                  admin@automicrouas.com
+                  admin@novahealthify.com
                 </p>
                 <p className="flex gap-3">
                   <Image src={mailSmall} alt="" className="object-contain" />
-                  contact@automicrouas.com
+                  contact@novahealthify.com
                 </p>
               </div>
             </div>

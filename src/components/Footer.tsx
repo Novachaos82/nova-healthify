@@ -62,31 +62,36 @@ function Footer() {
 
           <div className="space-y-[48px]">
             <div className="space-y-[24px]">
-              <div className="head font-space-grotesk">Resources</div>
+              <Link className="head font-space-grotesk" href={"/"}>
+                Home
+              </Link>
               <div className="space-y-[10px] flex flex-col">
-                <Link href={"/downloads"}>Downloads</Link>
-                <Link href={"/whitepapers"}>Whitepapers</Link>
+                <Link href={"/"}>Careers</Link>
+                <Link href={"/"}>Company</Link>
+                <Link href={"/"}>Connect</Link>
               </div>
             </div>
           </div>
           <div className="space-y-[24px]">
-            <Link href={"/operations"} className="head font-space-grotesk">
-              Operations
+            <Link href={"/about"} className="head font-space-grotesk">
+              About Us
             </Link>
             <div className="space-y-[10px] flex flex-col">
-              <Link href={"/operations/design"}>Designs</Link>
-              <Link href={"/operations/solutions"}>Solutions</Link>
-              <Link href={"/operations/support"}>Support</Link>
-              <Link href={"/operations/training"}>Training</Link>
+              <Link href={"/"}>Careers</Link>
+              <Link href={"/"}>Company</Link>
+              <Link href={"/"}>Connect</Link>
             </div>
           </div>
 
           <div className="space-y-[24px]">
-            <div className="head font-space-grotesk">About</div>
+            <Link href={"/contact"} className="head font-space-grotesk">
+              Contact
+            </Link>
+
             <div className="space-y-[10px] flex flex-col">
-              <Link href={"/careers"}>Careers</Link>
-              <Link href={""}>Company</Link>
-              <Link href={"/contact-us"}>Connect</Link>
+              <Link href={"/"}>Careers</Link>
+              <Link href={"/"}>Company</Link>
+              <Link href={"/"}>Connect</Link>
             </div>
           </div>
         </div>

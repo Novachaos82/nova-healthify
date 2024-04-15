@@ -2,13 +2,19 @@
 import { Search } from "lucide-react";
 import { FC, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
 interface SearchComponentProps {}
 
 const SearchComponent: FC<SearchComponentProps> = ({}) => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [storeSearchTerm, setStoreSearchTerm] = useState<string>();
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [novaResult, setNovaResult] = useState("");
+
   const [showSuggestions, setShowSuggestions] = useState(true);
   const router = useRouter();
 
@@ -42,6 +48,7 @@ const SearchComponent: FC<SearchComponentProps> = ({}) => {
   };
 
   async function predictNova() {
+    setStoreSearchTerm(searchTerm);
     setShowSuggestions(false);
     const result = await predictNovaHelper(searchTerm);
     setNovaResult(result);
@@ -86,17 +93,35 @@ const SearchComponent: FC<SearchComponentProps> = ({}) => {
         className="bg-black w-[50px] h-[50px] rounded-full flex justify-center items-center absolute top-1 right-2 cursor-pointer"
         onClick={handleSearch}
       >
-        <Search stroke="white" />
+        <HoverCard>
+          <HoverCardTrigger>
+            <Search stroke="white" />
+          </HoverCardTrigger>
+          <HoverCardContent className="mt-4">
+            Search By Product Name
+          </HoverCardContent>
+        </HoverCard>
       </div>
       <div
         className="bg-green-500 w-[50px] h-[50px] rounded-full flex justify-center items-center absolute top-1 right-16 cursor-pointer"
         onClick={predictNova}
       >
-        <Search stroke="white" />
+        <HoverCard>
+          <HoverCardTrigger>
+            <Search stroke="white" />
+          </HoverCardTrigger>
+          <HoverCardContent className="mt-4">
+            Search By Ingredients
+          </HoverCardContent>
+        </HoverCard>
       </div>
       {novaResult && (
-        <div className=" flex w-full justify-center mt-8">
-          <p className="font-bold">{novaResult}</p>
+        <div className=" flex flex-col  justify-center items-center mt-8 gap-2  w-[600px]">
+          <p className="font-semibold text-green-500">
+            Ingredients: {storeSearchTerm}
+          </p>
+
+          <p className="font-bold ">{novaResult}</p>
         </div>
       )}
     </div>
