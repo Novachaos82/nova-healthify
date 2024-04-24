@@ -66,9 +66,9 @@ function Footer() {
                 Home
               </Link>
               <div className="space-y-[10px] flex flex-col">
-                <Link href={"/"}>Careers</Link>
-                <Link href={"/"}>Company</Link>
-                <Link href={"/"}>Connect</Link>
+                <Link href={"/"}>Home</Link>
+                <Link href={"/"}>About Us</Link>
+                <Link href={"/"}>Contact</Link>
               </div>
             </div>
           </div>
@@ -77,9 +77,9 @@ function Footer() {
               About Us
             </Link>
             <div className="space-y-[10px] flex flex-col">
-              <Link href={"/"}>Careers</Link>
-              <Link href={"/"}>Company</Link>
-              <Link href={"/"}>Connect</Link>
+              <Link href={"/"}>Home</Link>
+              <Link href={"/"}>About Us</Link>
+              <Link href={"/"}>Contact</Link>
             </div>
           </div>
 
@@ -89,9 +89,9 @@ function Footer() {
             </Link>
 
             <div className="space-y-[10px] flex flex-col">
-              <Link href={"/"}>Careers</Link>
-              <Link href={"/"}>Company</Link>
-              <Link href={"/"}>Connect</Link>
+              <Link href={"/"}>Home</Link>
+              <Link href={"/"}>About Us</Link>
+              <Link href={"/"}>Contact</Link>
             </div>
           </div>
         </div>
